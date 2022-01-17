@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Even - A super concise theme for Hugo</title>
+    <title>BytePro - A blog to record my learning and thinking</title>
     <link>http://leralt.github.io/</link>
-    <description>Recent content on Even - A super concise theme for Hugo</description>
+    <description>Recent content on BytePro - A blog to record my learning and thinking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>bytepro</copyright>
