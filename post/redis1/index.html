@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Redis学习记录1 - BytePro - A blog to record my learning and thinking</title>
+  <title>Golang Slice 踩坑-1 - BytePro - A blog to record my learning and thinking</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="forlong-lcl" /><meta name="description" content="测试用 代码 golang 1 2 3 func main() { fmt.Println(&amp;#34;hello world!&amp;#34;) } Minyan 引言" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="forlong-lcl" /><meta name="description" content="Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题 问题" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Redis学习记录1" />
-<meta property="og:description" content="测试用 代码 golang 1 2 3 func main() { fmt.Println(&#34;hello world!&#34;) } Minyan 引言" />
+<meta property="og:title" content="Golang Slice 踩坑-1" />
+<meta property="og:description" content="Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题 问题" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://leralt.github.io/post/redis1/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-17T18:11:04&#43;08:00" />
 <meta property="article:modified_time" content="2022-01-17T18:11:04&#43;08:00" />
 
-<meta itemprop="name" content="Redis学习记录1">
-<meta itemprop="description" content="测试用 代码 golang 1 2 3 func main() { fmt.Println(&#34;hello world!&#34;) } Minyan 引言"><meta itemprop="datePublished" content="2022-01-17T18:11:04&#43;08:00" />
+<meta itemprop="name" content="Golang Slice 踩坑-1">
+<meta itemprop="description" content="Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题 问题"><meta itemprop="datePublished" content="2022-01-17T18:11:04&#43;08:00" />
 <meta itemprop="dateModified" content="2022-01-17T18:11:04&#43;08:00" />
-<meta itemprop="wordCount" content="18">
+<meta itemprop="wordCount" content="880">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Redis学习记录1"/>
-<meta name="twitter:description" content="测试用 代码 golang 1 2 3 func main() { fmt.Println(&#34;hello world!&#34;) } Minyan 引言"/>
+<meta name="twitter:title" content="Golang Slice 踩坑-1"/>
+<meta name="twitter:description" content="Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题 问题"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -125,13 +125,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Redis学习记录1</h1>
+      <h1 class="post-title">Golang Slice 踩坑-1</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2022-01-17 </span>
         
-          <span class="more-meta"> 约 18 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 880 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -141,30 +141,199 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#测试用">测试用</a></li>
+    <li>
+      <ul>
+        <li><a href="#问题是如何发现的">问题是如何发现的</a></li>
+        <li><a href="#关键点在哪">关键点在哪</a></li>
+        <li><a href="#测试">测试</a></li>
+        <li><a href="#解决办法">解决办法</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="测试用">测试用</h1>
-<p>代码</p>
-<p><code>golang</code></p>
+      <p>Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题</p>
+<h2 id="问题是如何发现的">问题是如何发现的</h2>
+<p>今天在刷LeetCode题目，全排列，一道回溯法的题目，先用C++写了，没什么问题，然后用golang重写，问题就来了</p>
+<p>全部代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">permute</span><span class="p">(</span><span class="nx">nums</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">[][]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">res</span> <span class="o">:=</span> <span class="p">[][]</span><span class="kt">int</span><span class="p">{}</span>
+    <span class="kd">var</span> <span class="nx">backtrack</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="nx">backtrack</span> <span class="p">=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">idx</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+	    			<span class="nx">res</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">nums</span><span class="p">)</span>   
+	    			<span class="k">return</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">idx</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+          	<span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+          	<span class="nf">backtrack</span><span class="p">(</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          	<span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">],</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nf">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码并不和预期的一样输出正确的结果，也就是nums的全排列，而是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">[[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3],[1,2,3]]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="关键点在哪">关键点在哪</h2>
+<p>关键点在于：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">res</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">nums</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>多次将切片nums改变并append到二位切片res中，结果并不与预期一样，在C++中，res中将存放nums每次的值，而golang，我们将res打印输出一下可以发现:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello world!&#34;</span><span class="p">)</span>
-<span class="p">}</span>
+<pre class="chroma"><code class="language-txt" data-lang="txt">[[1 2 3]]
+[[1 3 2] [1 3 2]]
+[[2 1 3] [2 1 3] [2 1 3]]
+[[2 3 1] [2 3 1] [2 3 1] [2 3 1]]
+[[3 2 1] [3 2 1] [3 2 1] [3 2 1] [3 2 1]]
+[[3 1 2] [3 1 2] [3 1 2] [3 1 2] [3 1 2] [3 1 2]]
 </code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>Minyan 引言</p>
-</blockquote>
+</div><p>没错，res中保存的并不是nums的值，而是nums的引用，对此，我们可以进行一次测试</p>
+<h2 id="测试">测试</h2>
+<p>golang测试代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">matrix</span> <span class="o">:=</span> <span class="p">[][]</span><span class="kt">int</span><span class="p">{}</span>
+<span class="nx">slice</span><span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>
+
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">slice</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>       <span class="c1">//输出slice的地址
+</span><span class="c1"></span><span class="nx">matrix</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">slice</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>    <span class="c1">//输出matrix的地址
+</span></code></pre></td></tr></table>
+</div>
+</div><p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">0xc000014168
+0xc000014168
+</code></pre></td></tr></table>
+</div>
+</div><p>对比组 C++测试代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">i</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>  
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">matrix</span><span class="p">{};</span>
+<span class="n">matrix</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;&amp;</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;&amp;</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">0x182530
+0x2602490
+</code></pre></td></tr></table>
+</div>
+</div><p>可知golang二维切片里面确实存的是nums的引用，但是经过查阅，并没有找到解决方法
+可知golang二维切片里面确实存的是nums的引用，也就是一个深拷贝和浅拷贝的问题</p>
+<h2 id="解决办法">解决办法</h2>
+<p>既然默认是浅拷贝，那我们就要知道如何对Slice进行深拷贝，在golang中，可以使用copy函数进行深拷贝</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nb">copy</span><span class="p">(</span> <span class="nx">destSlice</span><span class="p">,</span> <span class="nx">srcSlice</span> <span class="p">[]</span><span class="nx">T</span><span class="p">)</span> <span class="kt">int</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因此在上面的问题中，我们可以创建一个临时对象，用于拷贝nums切片</p>
+<p>if判断内可写为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">new_nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">))</span>	<span class="c1">//创建一个变量，注意要预分配大小，否则copy总是空		
+</span><span class="c1"></span><span class="nb">copy</span><span class="p">(</span><span class="nx">new_nums</span><span class="p">,</span><span class="nx">nums</span><span class="p">)</span>
+<span class="nx">res</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nx">new_nums</span><span class="p">)</span>
+<span class="k">return</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者更简洁一点，把nums拆开放到新的切片中，也可以达到目的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">res</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="nb">append</span><span class="p">([]</span><span class="nb">int</span><span class="p">(</span><span class="kc">nil</span><span class="p">),</span><span class="nx">nums</span><span class="o">...</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样，二维切片res中的元素就不会再被nums改变，问题解决了。说实话，还是挺喜欢go的设计的，相比C++简洁许多</p>
 
     </div>
 
