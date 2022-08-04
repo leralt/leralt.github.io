@@ -9,6 +9,20 @@
   </url>
   
   <url>
+    <loc>http://leralt.github.io/tags/go/</loc>
+    <lastmod>2022-08-04T20:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://leralt.github.io/tags/grpc/</loc>
+    <lastmod>2022-08-04T20:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://leralt.github.io/post/</loc>
     <lastmod>2022-08-04T20:11:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -16,7 +30,21 @@
   </url>
   
   <url>
+    <loc>http://leralt.github.io/tags/protobuf/</loc>
+    <lastmod>2022-08-04T20:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/protobuf/</loc>
+    <lastmod>2022-08-04T20:11:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://leralt.github.io/tags/</loc>
     <lastmod>2022-08-04T20:11:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -52,20 +80,6 @@
   
   <url>
     <loc>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/gin/</loc>
-    <lastmod>2022-08-04T18:39:33+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://leralt.github.io/tags/go/</loc>
-    <lastmod>2022-08-04T18:39:33+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://leralt.github.io/tags/</loc>
     <lastmod>2022-08-04T18:39:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
