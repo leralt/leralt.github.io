@@ -17,5 +17,14 @@
       <description>Go语言中Slice有一个常见的坑，就是数组的切片是否会改变原数组，网上解释的已经非常多了，今天我们来说一下另一个与Slice有关的问题 问题</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>http://leralt.github.io/post/%E9%9A%8F%E6%83%B31/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://leralt.github.io/post/%E9%9A%8F%E6%83%B31/</guid>
+      <description>2022年6月9日 四年前，我刚刚考完高考，那时候什么都不知道，对未来的路也一点也不清晰。四年过去了，时常会后悔，可是后悔改变不了什么，便不再</description>
+    </item>
+    
   </channel>
 </rss>
