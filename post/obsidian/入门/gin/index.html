@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gin Web框架 - BytePro - A blog to record my learning and thinking</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="chenlong" /><meta name="description" content="Gin Web框架 安装 下载安装 1 go get -u github.com/gin-gonic/gin 导入到代码中 1 import &amp;#34;github.com/gin-gonic/gin&amp;#34; 开始 创建一个example.go文件，键入以下代码： 1 2 3 4 5 6 7 8 9 10 11 12 13 package main import &amp;#34;github.com/gin-gonic/gin&amp;#34; func" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/gin/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4647e59a60744068e644d27317347c3a47f32b2154d519f2462c22ef7e32a3d0.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gin Web框架" />
+<meta property="og:description" content="Gin Web框架 安装 下载安装 1 go get -u github.com/gin-gonic/gin 导入到代码中 1 import &#34;github.com/gin-gonic/gin&#34; 开始 创建一个example.go文件，键入以下代码： 1 2 3 4 5 6 7 8 9 10 11 12 13 package main import &#34;github.com/gin-gonic/gin&#34; func" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/gin/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-04T18:39:33&#43;08:00" />
+<meta property="article:modified_time" content="2022-08-04T18:39:33&#43;08:00" />
+
+<meta itemprop="name" content="Gin Web框架">
+<meta itemprop="description" content="Gin Web框架 安装 下载安装 1 go get -u github.com/gin-gonic/gin 导入到代码中 1 import &#34;github.com/gin-gonic/gin&#34; 开始 创建一个example.go文件，键入以下代码： 1 2 3 4 5 6 7 8 9 10 11 12 13 package main import &#34;github.com/gin-gonic/gin&#34; func"><meta itemprop="datePublished" content="2022-08-04T18:39:33&#43;08:00" />
+<meta itemprop="dateModified" content="2022-08-04T18:39:33&#43;08:00" />
+<meta itemprop="wordCount" content="1225">
+<meta itemprop="keywords" content="Go," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gin Web框架"/>
+<meta name="twitter:description" content="Gin Web框架 安装 下载安装 1 go get -u github.com/gin-gonic/gin 导入到代码中 1 import &#34;github.com/gin-gonic/gin&#34; 开始 创建一个example.go文件，键入以下代码： 1 2 3 4 5 6 7 8 9 10 11 12 13 package main import &#34;github.com/gin-gonic/gin&#34; func"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">bytepro</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">bytepro</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gin Web框架</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-08-04 </span>
+        
+          <span class="more-meta"> 约 1225 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gin-web框架">Gin Web框架</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#开始">开始</a></li>
+        <li><a href="#gin-特性">Gin 特性</a></li>
+        <li><a href="#路由route">路由（Route）</a>
+          <ul>
+            <li><a href="#解析路径参数">解析路径参数</a></li>
+            <li><a href="#获取query参数">获取Query参数</a></li>
+            <li><a href="#获取post参数">获取POST参数</a></li>
+            <li><a href="#map参数">Map参数</a></li>
+            <li><a href="#重定向">重定向</a></li>
+            <li><a href="#分组路由grouping-routes">分组路由(Grouping Routes)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="gin-web框架">Gin Web框架</h1>
+<h2 id="安装">安装</h2>
+<ol>
+<li>下载安装</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">go get -u github.com/gin-gonic/gin
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>导入到代码中</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="开始">开始</h2>
+<p>创建一个<code>example.go</code>文件，键入以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;github.com/gin-gonic/gin&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">Default</span><span class="p">()</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>
+			<span class="s">&#34;message&#34;</span><span class="p">:</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">,</span>
+		<span class="p">})</span>
+	<span class="p">})</span>
+	<span class="nx">r</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span> <span class="c1">// listen and serve on 0.0.0.0:8080
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>首先我们使用gin.Default()生存了一个实例，这个实例就是WSGI应用程序</li>
+<li>之后我们用r.Get(&quot;/&quot;, &hellip;)声明了一个路由，告诉 Gin 什么样的URL 能触发传入的函数，这个函数返回我们想要显示在用户浏览器中的信息。</li>
+<li>最后用r.Run()函数让应用运行在本地服务器上，默认的监听端口是8080，可以传入参数设置端口，例如<code>r.Run(&quot;:9999&quot;)</code>即运行在 9999端口。
+然后<code>go run example.go</code>运行你的代码
+在浏览器中访问http://127.0.0.1:8080 ，就可以看到信息被打印出来。</li>
+</ol>
+<h2 id="gin-特性">Gin 特性</h2>
+<ul>
+<li><strong>快速</strong>：路由不使用反射，基于Radix树^[Radix树，即基数树，也称压缩前缀树，是一种提供key-value存储查找的数据结构。 与Trie不同的是，它对Trie树进行了空间优化，只有一个子节点的中间节点将被压缩。 同样的，Radix树的插入、查询、删除操作的时间复杂度都为O(k)。]，内存占用少。</li>
+<li><strong>中间件</strong>：HTTP请求，可先经过一系列中间件处理，例如：Logger，Authorization，GZIP等。这个特性和 NodeJs 的 <code>Koa</code> 框架很像。中间件机制也极大地提高了框架的可扩展性。</li>
+<li><strong>异常处理</strong>：服务始终可用，不会宕机。Gin 可以捕获 panic，并恢复。而且有极为便利的机制处理HTTP请求过程中发生的错误。</li>
+<li><strong>JSON</strong>：Gin可以解析并验证请求的JSON。这个特性对<code>Restful API</code>的开发尤其有用。</li>
+<li><strong>路由分组</strong>：例如将需要授权和不需要授权的API分组，不同版本的API分组。而且分组可嵌套，且性能不受影响。</li>
+<li><strong>渲染内置</strong>：原生支持JSON，XML和HTML的渲染</li>
+</ul>
+<h2 id="路由route">路由（Route）</h2>
+<p>路由方法有GET、POST、PUT、PATCH、DELETE和OPTIONS，还有Any，可匹配以上任意类型的参数。</p>
+<h3 id="解析路径参数">解析路径参数</h3>
+<p>有时候我们需要动态的路由，如<code>/user/:name</code>，通过调用不同的url来传入不同的name。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/user/:name&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">name</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Param</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">)</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;Hello %s&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl http://127.0.0.1:8080/user/long
+Hello long
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="获取query参数">获取Query参数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/users&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">name</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">)</span>
+	<span class="nx">role</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">DefaultQuery</span><span class="p">(</span><span class="s">&#34;role&#34;</span><span class="p">,</span> <span class="s">&#34;teacher&#34;</span><span class="p">)</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="s">&#34;%s is a %s&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">role</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl &#34;http://127.0.0.1:8080/users?name=long&amp;role=student&#34;
+long is a student
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="获取post参数">获取POST参数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/form&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">username</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">PostForm</span><span class="p">(</span><span class="s">&#34;username&#34;</span><span class="p">)</span>
+	<span class="nx">password</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">DefaultPostForm</span><span class="p">(</span><span class="s">&#34;password&#34;</span><span class="p">,</span> <span class="s">&#34;123456&#34;</span><span class="p">)</span> <span class="c1">//可设默认值
+</span><span class="c1"></span>	<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>
+		<span class="s">&#34;username&#34;</span><span class="p">:</span> <span class="nx">username</span><span class="p">,</span>
+		<span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="nx">password</span><span class="p">,</span>
+	<span class="p">})</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl http://localhost:8080/form  -X POST -d &#39;username=long&#39;
+{&#34;password&#34;:&#34;123456&#34;,&#34;username&#34;:&#34;long&#34;}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="map参数">Map参数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/post&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>  
+	<span class="nx">ids</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">QueryMap</span><span class="p">(</span><span class="s">&#34;ids&#34;</span><span class="p">)</span>  
+	<span class="nx">names</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">PostFormMap</span><span class="p">(</span><span class="s">&#34;names&#34;</span><span class="p">)</span>  
+  
+	<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>  
+		<span class="s">&#34;ids&#34;</span><span class="p">:</span>   <span class="nx">ids</span><span class="p">,</span>  
+		<span class="s">&#34;names&#34;</span><span class="p">:</span> <span class="nx">names</span><span class="p">,</span>  
+	<span class="p">})</span>  
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl -g &#34;http://localhost:8080/post?ids[Jack]=001&amp;ids[Tom]=002&#34; -X POST -d &#39;names[a]=Sam&amp;names[b]=David&#39;  
+{&#34;ids&#34;:{&#34;Jack&#34;:&#34;001&#34;,&#34;Tom&#34;:&#34;002&#34;},&#34;names&#34;:{&#34;a&#34;:&#34;Sam&#34;,&#34;b&#34;:&#34;David&#34;}}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="重定向">重定向</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/redirect&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">c</span><span class="p">.</span><span class="nf">Redirect</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusMovedPermanently</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>  
+<span class="p">})</span>  
+  
+<span class="nx">r</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/goindex&#34;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>  
+	<span class="nx">c</span><span class="p">.</span><span class="nx">Request</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="s">&#34;/&#34;</span>  
+	<span class="nx">r</span><span class="p">.</span><span class="nf">HandleContext</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>  
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl -i http://localhost:8080/redirect  
+HTTP/1.1 301 Moved Permanently  
+Content-Type: text/html; charset=utf-8  
+Location: /  
+Date: Thu, 08 Aug 2019 17:22:14 GMT  
+Content-Length: 36  
+  
+&lt;a href=&#34;/&#34;&gt;Moved Permanently&lt;/a&gt;.  
+  
+$ curl &#34;http://localhost:8080/goindex&#34;  
+Hello World!
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="分组路由grouping-routes">分组路由(Grouping Routes)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// group routes 分组路由  
+</span><span class="c1"></span><span class="nx">defaultHandler</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>  
+	<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span>  
+		<span class="s">&#34;path&#34;</span><span class="p">:</span> <span class="nx">c</span><span class="p">.</span><span class="nf">FullPath</span><span class="p">(),</span>  
+	<span class="p">})</span>  
+<span class="p">}</span>  
+<span class="c1">// group: v1  
+</span><span class="c1"></span><span class="nx">v1</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/v1&#34;</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="nx">v1</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/posts&#34;</span><span class="p">,</span> <span class="nx">defaultHandler</span><span class="p">)</span>  
+	<span class="nx">v1</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/series&#34;</span><span class="p">,</span> <span class="nx">defaultHandler</span><span class="p">)</span>  
+<span class="p">}</span>  
+<span class="c1">// group: v2  
+</span><span class="c1"></span><span class="nx">v2</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/v2&#34;</span><span class="p">)</span>  
+<span class="p">{</span>  
+	<span class="nx">v2</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/posts&#34;</span><span class="p">,</span> <span class="nx">defaultHandler</span><span class="p">)</span>  
+	<span class="nx">v2</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/series&#34;</span><span class="p">,</span> <span class="nx">defaultHandler</span><span class="p">)</span>  
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ curl http://localhost:8080/v1/posts  
+{&#34;path&#34;:&#34;/v1/posts&#34;}  
+$ curl http://localhost:8080/v2/posts  
+{&#34;path&#34;:&#34;/v2/posts&#34;}
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chenlong</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-08-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/go/">Go</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/obsidian/%E5%85%A5%E9%97%A8/go-get-started/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Go Get Started</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/obsidian/%E6%97%A7%E6%A1%A3/redis1/">
+            <span class="next-text nav-default">Golang Slice 踩坑-1</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:htliucl%20at%20163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/leralt" class="iconfont icon-github" title="github"></a>
+  <a href="http://leralt.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>bytepro</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

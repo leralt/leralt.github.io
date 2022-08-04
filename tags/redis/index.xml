@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on BytePro - A blog to record my learning and thinking</title>
+    <link>http://leralt.github.io/tags/redis/</link>
+    <description>Recent content in Redis on BytePro - A blog to record my learning and thinking</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>bytepro</copyright>
+    <lastBuildDate>Mon, 17 Jan 2022 18:11:04 +0800</lastBuildDate><atom:link href="http://leralt.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis学习 -- 常用数据结构</title>
+      <link>http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/redis%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 17 Jan 2022 18:11:04 +0800</pubDate>
+      
+      <guid>http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/redis%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>二、链表 链表的声明与实现在/src/adlist.h、/src/adlist.c中 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //双向链表 typedef struct</description>
+    </item>
+    
+    <item>
+      <title>Redis键常用命令</title>
+      <link>http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/%E5%85%A5%E9%97%A8redis/</link>
+      <pubDate>Mon, 17 Jan 2022 18:11:04 +0800</pubDate>
+      
+      <guid>http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/%E5%85%A5%E9%97%A8redis/</guid>
+      <description>命令 描述 DEL 用于删除 key DUMP 序列化给定 key ，并返回被序列化的值 EXISTS 检查给定 key 是否存在 EXPIRE 为给定 key 设置过期时间 EXPIREAT 用于为 key 设置过期时间，接受的时间参数是 UNIX 时</description>
+    </item>
+    
+  </channel>
+</rss>

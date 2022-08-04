@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title> - BytePro - A blog to record my learning and thinking</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="forlong-lcl" /><meta name="description" content="二、链表 链表的声明与实现在/src/adlist.h、/src/adlist.c中 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //双向链表 typedef struct" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="http://leralt.github.io/obsidian/%E6%97%A7%E6%A1%A3/redis%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4647e59a60744068e644d27317347c3a47f32b2154d519f2462c22ef7e32a3d0.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="二、链表 链表的声明与实现在/src/adlist.h、/src/adlist.c中 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //双向链表 typedef struct" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://leralt.github.io/obsidian/%E6%97%A7%E6%A1%A3/redis%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><meta property="article:section" content="Obsidian" />
+
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="二、链表 链表的声明与实现在/src/adlist.h、/src/adlist.c中 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //双向链表 typedef struct">
+
+<meta itemprop="wordCount" content="1697">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="二、链表 链表的声明与实现在/src/adlist.h、/src/adlist.c中 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 //双向链表 typedef struct"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">bytepro</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">bytepro</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h2 id="二链表">二、链表</h2>
+<p>链表的声明与实现在<code>/src/adlist.h</code>、<code>/src/adlist.c</code>中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="c1">//双向链表
+</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">listNode</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">listNode</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">listIter</span> <span class="p">{</span>
+    <span class="n">listNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">direction</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">listIter</span><span class="p">;</span>
+
+<span class="c1">//每个链表使用一个list结构来表示，这个结构带有表头节点指针、表尾节点指针，以及链表长度等信息
+</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">list</span> <span class="p">{</span>
+    <span class="n">listNode</span> <span class="o">*</span><span class="n">head</span><span class="p">;</span>
+    <span class="n">listNode</span> <span class="o">*</span><span class="n">tail</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">dup</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">free</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">match</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">list</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过为链表设置不同的类型特定函数，Redis的链表可以用来保存各种不同类型的值</p>
+<h2 id="三字典">三、字典</h2>
+<p>字典的声明与实现在<code>src/dict.h</code>、<code>src/dict.c</code>。字典是redis的底层基础，对数据库的增删改查也是构建在对字典的操作之上的</p>
+<p>在源码注释中，字典叫哈希表（hash table)，实现了insert/del/replace/find/get-random-element 这些操作，使用链式法处理哈希冲突</p>
+<p>重要结构体定义：</p>
+<ul>
+<li>哈希表节点实体</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">;</span>
+    <span class="k">union</span> <span class="p">{</span>
+        <span class="kt">void</span> <span class="o">*</span><span class="n">val</span><span class="p">;</span>
+        <span class="n">uint64_t</span> <span class="n">u64</span><span class="p">;</span>
+        <span class="n">int64_t</span> <span class="n">s64</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">dictEntry</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>     <span class="cm">/* 同一个篮子的下一个Entry */</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">metadata</span><span class="p">[];</span>           <span class="cm">/* An arbitrary number of bytes (starting at a
+</span><span class="cm">                                 * pointer-aligned address) of size as returned
+</span><span class="cm">                                 * by dictType&#39;s dictEntryMetadataBytes(). */</span>
+<span class="p">}</span> <span class="n">dictEntry</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>类型方法接口</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictType</span> <span class="p">{</span>
+    <span class="n">uint64_t</span> <span class="p">(</span><span class="o">*</span><span class="n">hashFunction</span><span class="p">)(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">keyDup</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">valDup</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">obj</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">keyCompare</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key2</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">keyDestructor</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">valDestructor</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">obj</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">expandAllowed</span><span class="p">)(</span><span class="n">size_t</span> <span class="n">moreMem</span><span class="p">,</span> <span class="kt">double</span> <span class="n">usedRatio</span><span class="p">);</span>
+    <span class="cm">/* Allow a dictEntry to carry extra caller-defined metadata.  The
+</span><span class="cm">     * extra memory is initialized to 0 when a dictEntry is allocated. */</span>
+    <span class="n">size_t</span> <span class="p">(</span><span class="o">*</span><span class="n">dictEntryMetadataBytes</span><span class="p">)(</span><span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">);</span>
+<span class="p">}</span> <span class="n">dictType</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>哈希表结构实现</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">struct</span> <span class="n">dict</span> <span class="p">{</span>
+    <span class="c1">//dictType 包含了一系列的用于操作特定类型键值对的函数，Redis会为用途不同的字典设置不同de
+</span><span class="c1"></span>    <span class="n">dictType</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span>
+    <span class="c1">//dictEntry结构保存着一个键值对。通常只使用ht_table[0],只有在对ht_table[0]进行rehash时，才使用ht_table[1]
+</span><span class="c1"></span>    <span class="n">dictEntry</span> <span class="o">**</span><span class="n">ht_table</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ht_used</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="c1">//rehashidx 记录rehash的进度，没有进行rehash时为-1,另外，负载因子设定为1.618，在server.h中定义
+</span><span class="c1"></span>    <span class="kt">long</span> <span class="n">rehashidx</span><span class="p">;</span>
+    <span class="cm">/* Keep small vars at end for optimal (minimal) struct padding */</span>
+    <span class="n">int16_t</span> <span class="n">pauserehash</span><span class="p">;</span> <span class="cm">/* If &gt;0 rehashing is paused (&lt;0 indicates coding error) */</span>
+    <span class="kt">signed</span> <span class="kt">char</span> <span class="n">ht_size_exp</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="cm">/* size的指数 (size = 1&lt;&lt;exp) */</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="四跳表">四、跳表</h2>
+<p>跳表是一种有序数据结构，通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的，在大部分情况下，跳表的效率可以和平衡树相媲美，并且实现更为简单</p>
+<p>Redis使用跳表作为有序集合键的底层实现之一</p>
+<blockquote>
+<p>因还未在源码找到跳表实现，故先跳过</p>
+</blockquote>
+<h2 id="五整数集合intset">五、整数集合（intset）</h2>
+<p><code>intset</code>是redis用来保存整数值的集合抽象数据结构，可以保存类型为<code>int16_t</code>、<code>int32_t</code>、<code>int64_t</code>的整数值，并且保证集合中不会出现重复元素</p>
+<p>该数据结构在<code>intset.h</code>中定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">intset</span> <span class="p">{</span>
+    <span class="n">uint32_t</span> <span class="n">encoding</span><span class="p">;</span>      <span class="c1">//编码方式
+</span><span class="c1"></span>    <span class="n">uint32_t</span> <span class="n">length</span><span class="p">;</span>        <span class="c1">//包含的元素数量
+</span><span class="c1"></span>    <span class="n">int8_t</span> <span class="n">contents</span><span class="p">[];</span>      <span class="c1">//保存元素的数组
+</span><span class="c1"></span><span class="p">}</span> <span class="n">intset</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="升级">升级</h3>
+<p>当我们要将一个新元素添加到整数集合里面，并且新元素的类型比整数集合现有所有元素的类型都要长时，<code>intset</code>需要先进行升级(upgrade)，然后才能将新元素添加到<code>intset</code>里面，升级分为三步骤：</p>
+<ol>
+<li>根据新元素类型，扩展<code>intset</code>底层数组的空间大小，并为新元素分配空间。</li>
+<li>将底层数组现有的所有元素转换成与新元素相同的类型，将转换后的元素放在正确的位置上，并且在放置元素时，维持有序</li>
+<li>将新元素添加到底层数组</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cm">/* Upgrades the intset to a larger encoding and inserts the given integer. */</span>
+<span class="k">static</span> <span class="n">intset</span> <span class="o">*</span><span class="nf">intsetUpgradeAndAdd</span><span class="p">(</span><span class="n">intset</span> <span class="o">*</span><span class="n">is</span><span class="p">,</span> <span class="n">int64_t</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">uint8_t</span> <span class="n">curenc</span> <span class="o">=</span> <span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">is</span><span class="o">-&gt;</span><span class="n">encoding</span><span class="p">);</span>    <span class="c1">//当前编码
+</span><span class="c1"></span>    <span class="n">uint8_t</span> <span class="n">newenc</span> <span class="o">=</span> <span class="n">_intsetValueEncoding</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>   <span class="c1">//新元素编码
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">is</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>   <span class="c1">//intrev32ifbe()是一个宏，只有在目标主机是大端序的时候会转换为小端序
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">prepend</span> <span class="o">=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>             <span class="c1">//判断元素位置
+</span><span class="c1"></span>
+    <span class="cm">/* 修改intset编码并重新分配内存 */</span>
+    <span class="n">is</span><span class="o">-&gt;</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">newenc</span><span class="p">);</span>
+    <span class="n">is</span> <span class="o">=</span> <span class="n">intsetResize</span><span class="p">(</span><span class="n">is</span><span class="p">,</span><span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">is</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>     
+
+    <span class="cm">/* Upgrade back-to-front so we don&#39;t overwrite values.
+</span><span class="cm">     * Note that the &#34;prepend&#34; variable is used to make sure we have an empty
+</span><span class="cm">     * space at either the beginning or the end of the intset. */</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">length</span><span class="o">--</span><span class="p">)</span>
+        <span class="n">_intsetSet</span><span class="p">(</span><span class="n">is</span><span class="p">,</span><span class="n">length</span><span class="o">+</span><span class="n">prepend</span><span class="p">,</span><span class="n">_intsetGetEncoded</span><span class="p">(</span><span class="n">is</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">curenc</span><span class="p">));</span>   <span class="c1">//秒啊，如果prepend为1，前面就会空出来位置放新元素，否则后面空出来
+</span><span class="c1"></span>
+    <span class="cm">/* 因为引发升级的新元素总是比该intset的所有元素长度都大，所以要么会放在最开头，要么放在最末尾 */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">prepend</span><span class="p">)</span>
+        <span class="n">_intsetSet</span><span class="p">(</span><span class="n">is</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">_intsetSet</span><span class="p">(</span><span class="n">is</span><span class="p">,</span><span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">is</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">),</span><span class="n">value</span><span class="p">);</span>
+    <span class="n">is</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">intrev32ifbe</span><span class="p">(</span><span class="n">is</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="压缩列表ziplist">压缩列表(ziplist)</h2>
+<p>压缩列表是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项，并且每个列表项要么就是小整数值，要么就是长度比较短的字符串，那么Redis会使用压缩列表来作为列表键的底层实现</p>
+<p>[[push_back()和emplace_back()的区别.2]]</p>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:htliucl%20at%20163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/leralt" class="iconfont icon-github" title="github"></a>
+  <a href="http://leralt.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>bytepro</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

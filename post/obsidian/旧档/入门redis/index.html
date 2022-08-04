@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redis键常用命令 - BytePro - A blog to record my learning and thinking</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="chenlong" /><meta name="description" content="命令 描述 DEL 用于删除 key DUMP 序列化给定 key ，并返回被序列化的值 EXISTS 检查给定 key 是否存在 EXPIRE 为给定 key 设置过期时间 EXPIREAT 用于为 key 设置过期时间，接受的时间参数是 UNIX 时" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/%E5%85%A5%E9%97%A8redis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.4647e59a60744068e644d27317347c3a47f32b2154d519f2462c22ef7e32a3d0.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Redis键常用命令" />
+<meta property="og:description" content="命令 描述 DEL 用于删除 key DUMP 序列化给定 key ，并返回被序列化的值 EXISTS 检查给定 key 是否存在 EXPIRE 为给定 key 设置过期时间 EXPIREAT 用于为 key 设置过期时间，接受的时间参数是 UNIX 时" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://leralt.github.io/post/obsidian/%E6%97%A7%E6%A1%A3/%E5%85%A5%E9%97%A8redis/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-01-17T18:11:04&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-17T18:11:04&#43;08:00" />
+
+<meta itemprop="name" content="Redis键常用命令">
+<meta itemprop="description" content="命令 描述 DEL 用于删除 key DUMP 序列化给定 key ，并返回被序列化的值 EXISTS 检查给定 key 是否存在 EXPIRE 为给定 key 设置过期时间 EXPIREAT 用于为 key 设置过期时间，接受的时间参数是 UNIX 时"><meta itemprop="datePublished" content="2022-01-17T18:11:04&#43;08:00" />
+<meta itemprop="dateModified" content="2022-01-17T18:11:04&#43;08:00" />
+<meta itemprop="wordCount" content="618">
+<meta itemprop="keywords" content="Redis," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis键常用命令"/>
+<meta name="twitter:description" content="命令 描述 DEL 用于删除 key DUMP 序列化给定 key ，并返回被序列化的值 EXISTS 检查给定 key 是否存在 EXPIRE 为给定 key 设置过期时间 EXPIREAT 用于为 key 设置过期时间，接受的时间参数是 UNIX 时"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">bytepro</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">bytepro</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redis键常用命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-01-17 </span>
+        
+          <span class="more-meta"> 约 618 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#redis-字符串命令">Redis 字符串命令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/del.html">DEL</a></td>
+<td>用于删除 key</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/dump.html">DUMP</a></td>
+<td>序列化给定 key ，并返回被序列化的值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/exists.html">EXISTS</a></td>
+<td>检查给定 key 是否存在</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/expire.html">EXPIRE</a></td>
+<td>为给定 key 设置过期时间</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/expireat.html">EXPIREAT</a></td>
+<td>用于为 key 设置过期时间，接受的时间参数是 UNIX 时间戳</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/pexpire.html">PEXPIRE</a></td>
+<td>设置 key 的过期时间，以毫秒计</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/pexpireat.html">PEXPIREAT</a></td>
+<td>设置 key 过期时间的时间戳(unix timestamp)，以毫秒计</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/keys.html">KEYS</a></td>
+<td>查找所有符合给定模式的 key</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/move.html">MOVE</a></td>
+<td>将当前数据库的 key 移动到给定的数据库中</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/persist.html">PERSIST</a></td>
+<td>移除 key 的过期时间，key 将持久保持</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/pttl.html">PTTL</a></td>
+<td>以毫秒为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/ttl.html">TTL</a></td>
+<td>以秒为单位，返回给定 key 的剩余生存时间(</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/randomkey.html">RANDOMKEY</a></td>
+<td>从当前数据库中随机返回一个 key</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/rename.html">RENAME</a></td>
+<td>修改 key 的名称</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/renamenx.html">RENAMENX</a></td>
+<td>仅当 newkey 不存在时，将 key 改名为 newkey</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/type.html">TYPE</a></td>
+<td>返回 key 所储存的值的类型</td>
+</tr>
+</tbody>
+</table>
+<h2 id="redis-字符串命令">Redis 字符串命令</h2>
+<p>以下是一些用于在 Redis 中管理字符串的基本命令的列表：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/set.html">SET</a></td>
+<td>设置指定 key 的值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/get.html">GET</a></td>
+<td>获取指定 key 的值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/getrange.html">GETRANGE</a></td>
+<td>返回 key 中字符串值的子字符</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/getset.html">GETSET</a></td>
+<td>将给定 key 的值设为 value ，并返回 key 的旧值 ( old value )</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/getbit.html">GETBIT</a></td>
+<td>对 key 所储存的字符串值，获取指定偏移量上的位 ( bit )</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/mget.html">MGET</a></td>
+<td>获取所有(一个或多个)给定 key 的值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/setbit.html">SETBIT</a></td>
+<td>对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/setex.html">SETEX</a></td>
+<td>设置 key 的值为 value 同时将过期时间设为 seconds</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/setnx.html">SETNX</a></td>
+<td>只有在 key 不存在时设置 key 的值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/setrange.html">SETRANGE</a></td>
+<td>从偏移量 offset 开始用 value 覆写给定 key 所储存的字符串值</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/strlen.html">STRLEN</a></td>
+<td>返回 key 所储存的字符串值的长度</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/mset.html">MSET</a></td>
+<td>同时设置一个或多个 key-value 对</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/msetnx.html">MSETNX</a></td>
+<td>同时设置一个或多个 key-value 对</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/psetex.html">PSETEX</a></td>
+<td>以毫秒为单位设置 key 的生存时间</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/incr.html">INCR</a></td>
+<td>将 key 中储存的数字值增一</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/incrby.html">INCRBY</a></td>
+<td>将 key 所储存的值加上给定的增量值 ( increment )</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/incrbyfloat.html">INCRBYFLOAT</a></td>
+<td>将 key 所储存的值加上给定的浮点增量值 ( increment )</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/decr.html">DECR</a></td>
+<td>将 key 中储存的数字值减一</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/decrby.html">DECRBY</a></td>
+<td>将 key 所储存的值减去给定的减量值 ( decrement )</td>
+</tr>
+<tr>
+<td><a href="https://www.redis.com.cn/commands/append.html">APPEND</a></td>
+<td>将 value 追加到 key 原来的值的末尾</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chenlong</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-01-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">Redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/obsidian/%E6%97%A7%E6%A1%A3/redis%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Redis学习 -- 常用数据结构</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/obsidian/%E5%85%A5%E9%97%A8/golang/gin/">
+            <span class="next-text nav-default"></span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:htliucl%20at%20163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/leralt" class="iconfont icon-github" title="github"></a>
+  <a href="http://leralt.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>bytepro</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
