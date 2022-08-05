@@ -7,23 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>bytepro</copyright>
-    <lastBuildDate>Thu, 04 Aug 2022 20:11:34 +0800</lastBuildDate><atom:link href="http://leralt.github.io/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jul 2022 11:07:03 +0800</lastBuildDate><atom:link href="http://leralt.github.io/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Protobuf</title>
-      <link>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/protobuf/</link>
-      <pubDate>Thu, 04 Aug 2022 20:11:34 +0800</pubDate>
+      <title>gRPC</title>
+      <link>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/golang/grpc/</link>
+      <pubDate>Thu, 21 Jul 2022 11:07:03 +0800</pubDate>
       
-      <guid>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/protobuf/</guid>
-      <description>Go Protobuf 入门 简介 protobuf 即 Protocol Buffers，是一种轻便高效的结构化数据存储格式，与语言、平台无关，可扩展可序列化。protobuf 性能和效率大幅度优于</description>
+      <guid>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/golang/grpc/</guid>
+      <description>概述 开始 gRPC 了，这篇文章学习使用 gRPC，输出一个 Hello World。 用 Go 实现 gRPC 的服务端。 用 Go 实现 gRPC 的客户端。 gRPC 支持 4 类服务方法，咱们这次实现 单项 RPC</description>
     </item>
     
     <item>
-      <title>gRPC</title>
-      <link>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/grpc/</link>
-      <pubDate>Thu, 04 Aug 2022 20:11:03 +0800</pubDate>
+      <title>Protobuf</title>
+      <link>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/golang/protobuf/</link>
+      <pubDate>Wed, 20 Jul 2022 20:11:34 +0800</pubDate>
       
-      <guid>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/grpc/</guid>
-      <description>概述 开始 gRPC 了，这篇文章学习使用 gRPC，输出一个 Hello World。 用 Go 实现 gRPC 的服务端。 用 Go 实现 gRPC 的客户端。 gRPC 支持 4 类服务方法，咱们这次实现 单项 RPC</description>
+      <guid>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/golang/protobuf/</guid>
+      <description>Go Protobuf 入门 简介 protobuf 即 Protocol Buffers，是一种轻便高效的结构化数据存储格式，与语言、平台无关，可扩展可序列化。protobuf 性能和效率大幅度优于</description>
     </item>
     
   </channel>
