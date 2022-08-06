@@ -79,7 +79,21 @@
   </url>
   
   <url>
+    <loc>http://leralt.github.io/categories/</loc>
+    <lastmod>2022-07-20T14:34:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://leralt.github.io/post/obsidian/%E5%85%A5%E9%97%A8/golang/golang-basic/</loc>
+    <lastmod>2022-07-20T14:34:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://leralt.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-07-20T14:34:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -130,12 +144,6 @@
   <url>
     <loc>http://leralt.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2022-01-17T18:11:04+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://leralt.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

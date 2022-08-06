@@ -6,6 +6,16 @@
     <description>Recent content in Categories on BytePro - A blog to record my learning and thinking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>bytepro</copyright><atom:link href="http://leralt.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>bytepro</copyright>
+    <lastBuildDate>Wed, 20 Jul 2022 14:34:49 +0800</lastBuildDate><atom:link href="http://leralt.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习</title>
+      <link>http://leralt.github.io/categories/%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Wed, 20 Jul 2022 14:34:49 +0800</pubDate>
+      
+      <guid>http://leralt.github.io/categories/%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
