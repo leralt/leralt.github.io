@@ -49,7 +49,7 @@
 <meta itemprop="name" content="coost安装踩坑">
 <meta itemprop="description" content="今天在看coost，一个c&#43;&#43;的多功能库，最主要是实现了类似golang的协程，还有channel。 使用文档给出的命令进行编译安装后，主要有"><meta itemprop="datePublished" content="2022-08-07T22:23:52&#43;08:00" />
 <meta itemprop="dateModified" content="2022-08-07T22:23:52&#43;08:00" />
-<meta itemprop="wordCount" content="386">
+<meta itemprop="wordCount" content="414">
 <meta itemprop="keywords" content="c&#43;&#43;,coost," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="coost安装踩坑"/>
 <meta name="twitter:description" content="今天在看coost，一个c&#43;&#43;的多功能库，最主要是实现了类似golang的协程，还有channel。 使用文档给出的命令进行编译安装后，主要有"/>
@@ -132,7 +132,7 @@
         <div class="post-category">
             <a href="/categories/%E8%B8%A9%E5%9D%91/"> 踩坑 </a>
             </div>
-          <span class="more-meta"> 约 386 字 </span>
+          <span class="more-meta"> 约 414 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -148,9 +148,9 @@
       <p>今天在看coost，一个c++的多功能库，最主要是实现了类似golang的协程，还有channel。
 使用文档给出的命令进行编译安装后，主要有以下几个文件夹</p>
 <ul>
-<li>/usr/local/include/co      包含该库的头文件， 使用时可以 <code>#include &lt;co/co.h&gt;</code></li>
-<li>/usr/local/lib        里面包含了生成的libco.a 静态库</li>
-<li>/usr/local/lib/cmake       该文件夹中包含cocoyaxi，里面是cmake需要用到的<code>.cmake</code>文件
+<li><code>/usr/local/include/co</code> ：包含该库的头文件， 使用时可以 <code>#include &lt;co/co.h&gt;</code></li>
+<li><code>/usr/local/lib</code> ：里面包含了生成的<code>libco.a</code>静态库</li>
+<li><code>/usr/local/lib/cmake </code>： 该文件夹中包含cocoyaxi（coost的原名，不知道为什么生成的文件没有改），里面是cmake需要用到的<code>.cmake</code>文件
 在cmake中使用该库的时候，需要在CMakeLists.txt中添加</li>
 </ul>
 <div class="highlight"><div class="chroma">
