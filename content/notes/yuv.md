@@ -9,14 +9,14 @@ ffplay -f rawvideo -video_size -pixel_format nv12 640x480 raw_640x480.yuv
 
 ## FFMPEG JPG转YUV命令  
 -s 1024x576 可以直接resize
-```bash
+```
 // jpg转nv21  
 ffmpeg -i image_1920x1080.jpg -pix_fmt nv21 image_1920x1080.nv21.yuv
 // jpg转bgr24  
 ffmpeg -i image_1920x1080.jpg -pix_fmt bgr24 image_1920x1080.bgr24.rgb
 // jpg转bgr32  
 ffmpeg -i image_1920x1080.jpg -pix_fmt bgr32 image_1920x1080.bgr32.rgb
-// nv21转jpg  
+nv21转jpg  
 ffmpeg -y -s 1920x1080 -pix_fmt nv21 -i image.nv21.yuv image.jpg
 ```
 ## FFMPEG修改YUV尺寸
