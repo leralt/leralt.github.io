@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.inFolder("笔记")
+views:
+  - type: cards
+    name: 视图
+    order:
+      - file.name
+      - file.tags
+    cardSize: 170
+    imageFit: ""

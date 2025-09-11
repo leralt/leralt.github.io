@@ -1,0 +1,12 @@
+filters:
+  and:
+    - file.folder == "日记"
+views:
+  - type: cards
+    name: 表格
+    filters:
+      and:
+        - file.folder == "日记"
+    cardSize: 180
+    imageFit: ""
+    imageAspectRatio: 1
